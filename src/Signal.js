@@ -3,6 +3,23 @@
 @version 1.0.1
 */
 
+const validateListener = (listener, fnName) => {
+  if (typeof listener !== 'function') {
+    throw new Error('Phaser.Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName));
+  }
+};
+const indexOfListener = (listeners, listener, context) => {
+  let n = listeners.length;
+  let cur;
+  while (n--) {// eslint-disable-line
+    cur = listeners[n];
+    if (cur.listener === listener && cur.context === context) {
+      return n;
+    }
+  }
+  return -1;
+};
+
 class Slot {
   /**
    * @param  {Signal} signal
@@ -18,14 +35,18 @@ class Slot {
     this.destroyed = false;
   }
   execute(...args) {
-    if (this.destroyed) { return; }
+    if (this.destroyed) {
+      return;
+    }
     this.listener.apply(this.context, args);
     if (this.once) {
       this.remove();
     }
   }
   remove() {
-    if (this.destroyed) { return; }
+    if (this.destroyed) {
+      return;
+    }
     this.signal.remove(this.listener);
   }
   /**
@@ -42,17 +63,6 @@ class Slot {
   }
 }
 
-const indexOfListener = (listeners, listener, context) => {
-  let n = listeners.length;
-  let cur;
-  while (n--) {// eslint-disable-line
-    cur = listeners[n];
-    if (cur.listener === listener && cur.context === context) {
-      return n;
-    }
-  }
-  return -1;
-};
 
 class Signal {
   constructor() {
@@ -69,7 +79,7 @@ class Signal {
    * @return {Slot}
    */
   add(listener, context) {
-    this.validateListener(listener, 'add');
+    validateListener(listener, 'add');
     return this.registerListener(listener, context, false);
   }
   /**
@@ -78,14 +88,10 @@ class Signal {
    * @return {Slot}
    */
   addOnce(listener, context) {
-    this.validateListener(listener, 'add');
+    validateListener(listener, 'add');
     return this.registerListener(listener, context, true);
   }
-  validateListener(listener, fnName) {
-    if (typeof listener !== 'function') {
-      throw new Error('Phaser.Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName));
-    }
-  }
+
   /**
    * @param  {function} listener
    * @param  {any} context
@@ -110,7 +116,7 @@ class Signal {
    * @return {function}
    */
   remove(listener, context) {
-    this.validateListener(listener, 'remove');
+    validateListener(listener, 'remove');
     const i = indexOfListener(this.listeners, listener, context);
     if (i !== -1) {
       this.listeners[i].destroy();
@@ -153,5 +159,4 @@ class Signal {
   }
 }
 
-
-export default Signal;
+module.exports = Signal;

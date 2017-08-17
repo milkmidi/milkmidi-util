@@ -1,2 +1,5 @@
-import Signal from './Signal';
-export {Signal};
+const Signal = require('./Signal');
+
+module.exports = { 
+  Signal 
+};

@@ -1,7 +1,7 @@
 
-import Signal from '../src/Signal';
+const Signal = require('../src/Signal');
 
-describe.only('Signal', () => {
+describe('Signal', () => {
   test('basic', () => {
     const signal = new Signal();
     signal.destroy();
