@@ -1,0 +1,22 @@
+{
+  "name": "milkmidi-util",
+  "version": "1.0.0",
+  "description": "milkmidi-util",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milkmidi/milkmidi-util.git"
+  },
+  "author": "milkmidi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milkmidi/milkmidi-util/issues"
+  },
+  "homepage": "https://github.com/milkmidi/milkmidi-util#readme",
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
