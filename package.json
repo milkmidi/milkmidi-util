@@ -2,7 +2,7 @@
   "name": "milkmidi-util",
   "version": "1.0.0",
   "description": "milkmidi-util",
-  "main": "dist/index.js",
+  "main": "dist/",
   "scripts": {
     "start": "npm run build -- --watch",
     "build": "babel --out-dir dist src",

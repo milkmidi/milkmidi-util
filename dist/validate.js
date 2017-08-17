@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.isEmail = isEmail;
-exports.isMobileNumber = isMobileNumber;
+exports.isMobile = isMobile;
 exports.isIdentityInTaiwan = isIdentityInTaiwan;
 /* eslint no-useless-escape:off , max-len:off */
 /**
@@ -12,8 +12,8 @@ exports.isIdentityInTaiwan = isIdentityInTaiwan;
  *@version 1.0.0
  */
 var MOBILE_PATTERN = /^\d{10}$/;
-var EMAIL_PATTERN = /^([A-Za-z0-9_\-\.+])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-var TW_ID_PATTERN = /[A-Za-z]{1}(1|2)[0-9]{8}/;
+var EMAIL_PATTERN = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+var TW_ID_PATTERN = /^[A-Za-z]{1}(1|2)[0-9]{8}$/;
 var TW_ID_MULTIPLY = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 var TW_ID_MAP = { a: 10, b: 11, c: 12, d: 13, e: 14, f: 15, g: 16, h: 17, j: 18, k: 19, l: 20, m: 21, n: 22, p: 23, q: 24, r: 25, s: 26, t: 27, u: 28, v: 29, x: 30, y: 31, w: 32, z: 33, i: 34, o: 35 };
 
@@ -25,10 +25,10 @@ function isEmail(email) {
   return EMAIL_PATTERN.test(email);
 }
 /**
- * @param {*} mobileNumber
+ * @param {string} mobileNumber
  * @return {boolean}
  */
-function isMobileNumber(mobileNumber) {
+function isMobile(mobileNumber) {
   return MOBILE_PATTERN.test(mobileNumber.toString());
 }
 /**
