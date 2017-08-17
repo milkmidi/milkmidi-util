@@ -3,11 +3,13 @@
     ["env", {
       "targets": {
         "browsers": [
-          "last 2 versions"
+          "last 2 versions",
+          "ie >= 8"
         ]
       }
     }]
   ],
   "plugins": [
+    "add-module-exports"
   ]
 }
