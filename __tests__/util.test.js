@@ -2,9 +2,13 @@
 const {
   toCommaNumber,
   isNumber,
+  queryString,
 } = require('../dist/util');
 
 describe('util', () => {
+  test('queryString', () => {
+    // expect(isNumber(0)).toBe(true);
+  });
   test('isNumber', () => {
     expect(isNumber(0)).toBe(true);
     expect(isNumber(10)).toBe(true);

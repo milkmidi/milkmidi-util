@@ -1,3 +1,4 @@
+/* eslint no-param-reassign:0 */
 export function isArray(value) {
   if (Array.isArray) {
     return Array.isArray(value);
@@ -11,6 +12,23 @@ export function isNumber(value) {
 
 export function toDigi(value) {
   return value.toString().length === 1 ? `0${value}` : value;
+}
+
+
+let queryStringObj = null;
+export function queryString(name, queryStr = location.href) {
+  if (queryStringObj) {
+    return queryStringObj[name];
+  }
+  const reg = /[^&?]*?=[^&?]*/g;
+  const founds = queryStr.match(reg);
+  const queryObj = founds.reduce((obj, valueStr) => {
+    const [key, value] = valueStr.split('=');
+    obj[key] = value;
+    return obj;
+  }, {});
+  queryStringObj = queryObj;
+  return queryObj[name];
 }
 
 
