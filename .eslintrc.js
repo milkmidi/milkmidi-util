@@ -7,5 +7,6 @@ module.exports = {
   },
   settings: {},
   rules: {
+    'import/prefer-default-export': 0,
   },
 };
