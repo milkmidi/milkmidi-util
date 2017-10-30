@@ -3,7 +3,7 @@ const {
   toCommaNumber,
   isNumber,
   queryString,
-} = require('../dist/util');
+} = require('../lib/util');
 
 describe('util', () => {
   test('queryString', () => {

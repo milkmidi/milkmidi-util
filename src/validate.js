@@ -39,17 +39,14 @@ export function isIdentityInTaiwan(sID) {
     Math.floor(firstLetterToNumber / 10),
     firstLetterToNumber % 10,
   ];
-  let sum = 0;
-  const length = TW_ID_MULTIPLY.length;
-  for (let i = 0; i < length; i += 1) {
+  const sum = lastNum + TW_ID_MULTIPLY.reduce((accumulator, val, index) => {
     let n;
-    if (i < 2) {
-      n = nums[i];
+    if (index < 2) {
+      n = nums[index];
     } else {
-      n = parseInt(sID.charAt(i - 1), 10);
+      n = parseInt(sID.charAt(index - 1), 10);
     }
-    sum += n * TW_ID_MULTIPLY[i];
-  }
-  sum += lastNum;
+    return (n * TW_ID_MULTIPLY[index]) + accumulator;
+  }, 0);
   return sum % 10 === 0;
 }

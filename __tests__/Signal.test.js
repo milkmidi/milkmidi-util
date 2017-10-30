@@ -1,5 +1,5 @@
 
-const Signal = require('../dist/Signal');
+const Signal = require('../lib/Signal');
 
 describe('Signal', () => {
   test('basic', () => {
