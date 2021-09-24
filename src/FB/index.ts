@@ -1,9 +1,8 @@
 
 /* eslint no-unused-expressions:0 */
 /* global FB */
-// @flow
 
-import { type LoginData, FBMe, FBShareResponse } from './types';
+import type { LoginData, FBMe, FBShareResponse } from './types';
 
 export const FACEBOOK_STATUS_CONNECTED = 'connected';
 export const FACEBOOK_STATUS_NOT_AUTHORIZED = 'not_authorized';
@@ -49,7 +48,7 @@ export const init = (appId:string, version:string = 'v2.10'):Promise<void> => {
 
 export const getLoginStatus = ():Promise<LoginData> => (
   new Promise((resolve, reject) => {
-    FB.getLoginStatus(({ status, authResponse }) => {
+    window.FB.getLoginStatus(({ status, authResponse }) => {
       if (status === FACEBOOK_STATUS_CONNECTED) {
         data.userID = authResponse.userID;
         data.accessToken = authResponse.accessToken;
@@ -64,7 +63,7 @@ export const getLoginStatus = ():Promise<LoginData> => (
 
 export const login = (scope:string = ''):Promise<LoginData> => (
   new Promise((resolve, reject) => {
-    FB.login(({ authResponse }) => {
+    window.FB.login(({ authResponse }) => {
       if (authResponse) {
         data.userID = authResponse.userID;
         data.accessToken = authResponse.accessToken;
@@ -86,7 +85,7 @@ export const loginRedirect = (appId:string, redirectUri:string) => {
 
 export const logout = (): Promise<any> => (
   new Promise((resolve) => {
-    FB.logout(result => resolve(result));
+    window.FB.logout(result => resolve(result));
   })
 );
 
@@ -103,7 +102,7 @@ export const sharer = (url:string) => {
  */
 export const share = (href:string):Promise<FBShareResponse> => (
   new Promise((resolve) => {
-    FB.ui({
+    window.FB.ui({
       method: 'share',
       mobile_iframe: true,
       href,

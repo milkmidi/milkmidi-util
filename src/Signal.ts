@@ -3,12 +3,12 @@
 @version 1.0.1
 */
 
-const validateListener = (listener, fnName) => {
+const validateListener = (listener:Function, fnName:string) => {
   if (typeof listener !== 'function') {
     throw new Error('Phaser.Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName));
   }
 };
-const indexOfListener = (listeners, listener, context) => {
+const indexOfListener = (listeners:Function[], listener, context:any) => {
   let n = listeners.length;
   let cur;
   while (n--) {// eslint-disable-line
@@ -27,7 +27,7 @@ class Slot {
    * @param  {object} context
    * @param  {boolean} onece
    */
-  constructor(signal, listener, context, once = false) {
+  constructor(private signal, private listener, private context,private  once = false) {
     this.signal = signal;
     this.listener = listener;
     this.context = context;
@@ -65,12 +65,12 @@ class Slot {
 
 
 class Signal {
+  public enabled: boolean;
+  public destroyed: boolean;
+  private listeners: Slot[];
   constructor() {
     this.enabled = true;
     this.destroyed = false;
-    /**
-     * @type {Slot[]}
-     */
     this.listeners = [];
   }
   /**
@@ -78,7 +78,7 @@ class Signal {
    * @param  {any} context
    * @return {Slot}
    */
-  add(listener, context) {
+  add(listener:Function, context:any) {
     validateListener(listener, 'add');
     return this.registerListener(listener, context, false);
   }
@@ -87,7 +87,7 @@ class Signal {
    * @param  {any} context
    * @return {Slot}
    */
-  addOnce(listener, context) {
+  addOnce(listener:Function, context:any) {
     validateListener(listener, 'add');
     return this.registerListener(listener, context, true);
   }
@@ -98,7 +98,7 @@ class Signal {
    * @param  {boolean} isOnce
    * @return {Slot}
    */
-  registerListener(listener, context, isOnce) {
+  registerListener(listener:Function, context:any, isOnce = false) {
     const index = indexOfListener(this.listeners, listener, context);
     let slot;
     if (index !== -1) {
@@ -159,4 +159,4 @@ class Signal {
   }
 }
 
-module.exports = Signal;
+export default Signal;
