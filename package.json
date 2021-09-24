@@ -2,11 +2,12 @@
   "name": "milkmidi-util",
   "version": "1.0.0",
   "description": "milkmidi-util",
-  "main": "dist/",
+  "main": "index.js",
   "scripts": {
     "start": "npm run build -- --watch",
     "build": "babel --out-dir dist src",
-    "test": "./node_modules/.bin/jest"
+    "webpack": "webpack",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,12 +23,15 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.4.1",
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-import": "^2.7.0",
     "jest": "^20.0.4",
-    "webpack": "^3.5.5"
+    "lodash": "^4.17.4",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1"
   }
 }

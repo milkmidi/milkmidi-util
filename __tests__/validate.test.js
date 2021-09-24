@@ -3,7 +3,7 @@ const {
   isEmail,
   isMobile,
   isIdentityInTaiwan,
-} = require('../dist/validate');
+} = require('../lib/validate');
 
 describe('validate', () => {
   test('email', () => {
