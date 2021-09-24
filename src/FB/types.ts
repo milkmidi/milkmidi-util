@@ -1,4 +1,3 @@
-// @flow
 export type LoginData = {
   userID: string,
   accessToken: string,
@@ -13,11 +12,11 @@ export type FBMe = {
 // https://developers.facebook.com/docs/sharing/reference/share-dialog
 export type FBShareOption = {
   href: String,
-  hashtag: ?string,
+  hashtag?: string,
   mobile_iframe: boolean,
 }
 
 export type FBShareResponse = {
-  post_id: ?String,
-  error_message: ?string,
+  post_id?: string,
+  error_message?: string,
 }
